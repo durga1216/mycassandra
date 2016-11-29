@@ -7,6 +7,7 @@
 <title>Hello From Cassandra running OpenShift</title>
 </head>
 <body>
-<h3>Hello From Cassandra running OpenShift</h3>
+<h3>Hello From Cassandra running OpenShift</h3><br>
+<h4>${host}</h4>
 </body>
 </html>

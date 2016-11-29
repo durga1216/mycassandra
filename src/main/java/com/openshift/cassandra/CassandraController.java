@@ -18,6 +18,7 @@ import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,50 +26,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CassandraController {
 
 	@RequestMapping(value = "/cassandra", method = RequestMethod.GET)
-	public String process() throws TException, InvalidRequestException,
+	public String process(Model model) throws TException, InvalidRequestException,
 			UnavailableException, UnsupportedEncodingException,
 			NotFoundException, TimedOutException {
 
-		String host =   System.getenv("OPENSHIFT_INTERNAL_IP");
-
+		String host = System.getenv("OPENSHIFT_INTERNAL_IP");
+        model.addAttribute("host", host);
 		System.out.println(host);
 		
 	//	String host="172.30.141.85";
-		int port = 9160;
-		TTransport transport = new TFramedTransport(new TSocket(host,port));
-        TProtocol protocol = new TBinaryProtocol(transport);
-        Cassandra.Client client = new Cassandra.Client(protocol);
-        transport.open();
-
-        client.set_keyspace("mykeyspace");
-
-        // define column parent
-        ColumnParent parent = new ColumnParent("User");
-
-        // define row id
-        ByteBuffer rowid = ByteBuffer.wrap("100".getBytes());
-
-        // define column to add
-        Column username = new Column();
-        username.setName("username".getBytes());
-        username.setValue("shekhargulati".getBytes());
-        username.setTimestamp(System.currentTimeMillis());
-
-        // define consistency level
-        ConsistencyLevel consistencyLevel = ConsistencyLevel.ONE;
-
-        // execute insert
-        client.insert(rowid, parent, username, consistencyLevel);
-        
-        Column password = new Column();
-        password.setName("password".getBytes());
-        password.setValue("password".getBytes());
-        password.setTimestamp(System.currentTimeMillis());
-        client.insert(rowid, parent, password, consistencyLevel);
-
-        // release resources
-        transport.flush();
-        transport.close();
+//		int port = 9160;
+//		TTransport transport = new TFramedTransport(new TSocket(host,port));
+//        TProtocol protocol = new TBinaryProtocol(transport);
+//        Cassandra.Client client = new Cassandra.Client(protocol);
+//        transport.open();
+//
+//        client.set_keyspace("mykeyspace");
+//
+//        // define column parent
+//        ColumnParent parent = new ColumnParent("User");
+//
+//        // define row id
+//        ByteBuffer rowid = ByteBuffer.wrap("100".getBytes());
+//
+//        // define column to add
+//        Column username = new Column();
+//        username.setName("username".getBytes());
+//        username.setValue("shekhargulati".getBytes());
+//        username.setTimestamp(System.currentTimeMillis());
+//
+//        // define consistency level
+//        ConsistencyLevel consistencyLevel = ConsistencyLevel.ONE;
+//
+//        // execute insert
+//        client.insert(rowid, parent, username, consistencyLevel);
+//        
+//        Column password = new Column();
+//        password.setName("password".getBytes());
+//        password.setValue("password".getBytes());
+//        password.setTimestamp(System.currentTimeMillis());
+//        client.insert(rowid, parent, password, consistencyLevel);
+//
+//        // release resources
+//        transport.flush();
+//        transport.close();
         return "hello";
 	}
 	
