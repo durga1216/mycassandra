@@ -8,6 +8,7 @@
 </head>
 <body>
 <h3>Hello From Cassandra running OpenShift</h3><br>
-<h4>${host}</h4>
+<h4>${host}</h4><br>
+<h4>${message}</h4>
 </body>
 </html>

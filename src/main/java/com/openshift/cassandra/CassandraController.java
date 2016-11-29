@@ -32,17 +32,16 @@ public class CassandraController {
 
 		String host = System.getenv("OPENSHIFT_INTERNAL_IP");
         model.addAttribute("host", host);
-		System.out.println(host);
 		
-	//	String host="172.30.141.85";
-//		int port = 9160;
-//		TTransport transport = new TFramedTransport(new TSocket(host,port));
-//        TProtocol protocol = new TBinaryProtocol(transport);
-//        Cassandra.Client client = new Cassandra.Client(protocol);
-//        transport.open();
-//
-//        client.set_keyspace("mykeyspace");
-//
+		int port = 9160;
+		TTransport transport = new TFramedTransport(new TSocket(host,port));
+        TProtocol protocol = new TBinaryProtocol(transport);
+        Cassandra.Client client = new Cassandra.Client(protocol);
+        transport.open();
+
+       client.set_keyspace("mykeyspace");
+       String message="Sucess from controller";
+       model.addAttribute("message", message);
 //        // define column parent
 //        ColumnParent parent = new ColumnParent("User");
 //
