@@ -30,7 +30,7 @@ public class CassandraController {
 			NotFoundException, TimedOutException {
 
 		String host =     System.getenv("OPENSHIFT_INTERNAL_IP");
-;
+
 		System.out.println(host);
 		
 	//	String host="172.30.141.85";
