@@ -29,11 +29,11 @@ public class CassandraController {
 			UnavailableException, UnsupportedEncodingException,
 			NotFoundException, TimedOutException {
 
-		String app =     System.getenv("OPENSHIFT_APP_NAME");
+		String host =     System.getenv("OPENSHIFT_INTERNAL_IP");
 ;
-		System.out.println(app);
+		System.out.println(host);
 		
-		String host="172.30.141.85";
+	//	String host="172.30.141.85";
 		int port = 19160;
 		TTransport transport = new TFramedTransport(new TSocket(host,port));
         TProtocol protocol = new TBinaryProtocol(transport);
