@@ -29,12 +29,12 @@ public class CassandraController {
 			UnavailableException, UnsupportedEncodingException,
 			NotFoundException, TimedOutException {
 
-		String host =     System.getenv("OPENSHIFT_INTERNAL_IP");
+		String host =   System.getenv("OPENSHIFT_INTERNAL_IP");
 
 		System.out.println(host);
 		
 	//	String host="172.30.141.85";
-		int port = 19160;
+		int port = 9160;
 		TTransport transport = new TFramedTransport(new TSocket(host,port));
         TProtocol protocol = new TBinaryProtocol(transport);
         Cassandra.Client client = new Cassandra.Client(protocol);
