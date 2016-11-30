@@ -30,7 +30,8 @@ public class CassandraController {
 			UnavailableException, UnsupportedEncodingException,
 			NotFoundException, TimedOutException {
 
-		String host = System.getenv("OPENSHIFT_INTERNAL_IP");
+		String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+
         model.addAttribute("host", host);
 		
 		int port = 9160;
