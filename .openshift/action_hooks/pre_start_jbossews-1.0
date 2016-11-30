@@ -16,6 +16,6 @@ set -x
 cd $OPENSHIFT_DATA_DIR/cassandra
 bin/cassandra
 export CQLSH_HOST=$OPENSHIFT_INTERNAL_IP
-export CQLSH_PORT=19160
+export CQLSH_PORT=9160
 sleep 30
 bin/cassandra-cli -h $OPENSHIFT_INTERNAL_IP -p 19160 -f $OPENSHIFT_REPO_DIR/cassandra-tutorial.txt
